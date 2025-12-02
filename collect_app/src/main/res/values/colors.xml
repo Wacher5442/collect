@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryLight">#F39200</color>
+    <color name="colorOnPrimaryLight">#FFFFFF</color>
+    <color name="colorPrimaryContainerLight">#FFE0B2</color>
+    <color name="colorOnPrimaryContainerLight">#4E2B00</color>
+    <color name="colorSurfaceLight">#FFFFFF</color>
+
+    <color name="colorPrimaryDark">#F39200</color>
+    <color name="colorOnPrimaryDark">#1A1A1A</color>
+    <color name="colorPrimaryContainerDark">#662D00</color>
+    <color name="colorOnPrimaryContainerDark">#FFE0B2</color>
+    <color name="colorSurfaceDark">#121212</color>
+</resources>
