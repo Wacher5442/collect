@@ -121,7 +121,7 @@ public class GeoPolyActivity extends LocalizedActivity implements GeoPolySetting
     private static final int[] INTERVAL_OPTIONS = {
         1, 5, 10, 20, 30, 60, 300, 600, 1200, 1800
     };
-    private static final int DEFAULT_INTERVAL_INDEX = 3; // default is 20 seconds
+    private static final int DEFAULT_INTERVAL_INDEX = 1; // default is 20 seconds
 
     private static final int[] ACCURACY_THRESHOLD_OPTIONS = {
         0, 3, 5, 10, 15, 20
@@ -174,6 +174,11 @@ public class GeoPolyActivity extends LocalizedActivity implements GeoPolySetting
             intervalIndex = savedInstanceState.getInt(INTERVAL_INDEX_KEY, DEFAULT_INTERVAL_INDEX);
             accuracyThresholdIndex = savedInstanceState.getInt(
                 ACCURACY_THRESHOLD_INDEX_KEY, DEFAULT_ACCURACY_THRESHOLD_INDEX);
+        }else {
+            recordingEnabled = true;
+            recordingAutomatic = true;
+            intervalIndex = DEFAULT_INTERVAL_INDEX; 
+            accuracyThresholdIndex = DEFAULT_ACCURACY_THRESHOLD_INDEX;
         }
 
         intentReadOnly = getIntent().getBooleanExtra(EXTRA_READ_ONLY, false);
@@ -373,17 +378,14 @@ public class GeoPolyActivity extends LocalizedActivity implements GeoPolySetting
 
     @Override
     public void updateRecordingMode(int id) {
-        recordingEnabled = id != R.id.placement_mode;
-        recordingAutomatic = id == R.id.automatic_mode;
+        recordingEnabled = true;
+        recordingAutomatic = true;
     }
 
-    @Override
+   @Override
     public int getCheckedId() {
-        if (recordingEnabled) {
-            return recordingAutomatic ? R.id.automatic_mode : R.id.manual_mode;
-        } else {
-            return R.id.placement_mode;
-        }
+        // Toujours retourner le mode automatique
+        return R.id.automatic_mode;
     }
 
     @Override
@@ -481,8 +483,8 @@ public class GeoPolyActivity extends LocalizedActivity implements GeoPolySetting
         zoomButton.setEnabled(location != null);
         backspaceButton.setEnabled(numPoints > 0);
         clearButton.setEnabled(!inputActive && numPoints > 0);
-        settingsView.findViewById(R.id.manual_mode).setEnabled(location != null);
-        settingsView.findViewById(R.id.automatic_mode).setEnabled(location != null);
+        // settingsView.findViewById(R.id.manual_mode).setEnabled(location != null);
+        // settingsView.findViewById(R.id.automatic_mode).setEnabled(location != null);
 
         if (intentReadOnly) {
             playButton.setEnabled(false);
